@@ -1,43 +1,36 @@
 package com.example.lab1_flowers
 
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
-import android.widget.RadioButton
-import android.widget.RadioGroup
-import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var viewModel: SharedViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val editTextInput = findViewById<EditText>(R.id.editTextInput)
-        val radioGroupColor = findViewById<RadioGroup>(R.id.radioGroupColor)
-        val radioGroupPrice = findViewById<RadioGroup>(R.id.radioGroupPrice)
-        val buttonOk = findViewById<Button>(R.id.buttonOk)
-        val textViewResult = findViewById<TextView>(R.id.textViewResult)
+        viewModel = ViewModelProvider(this)[SharedViewModel::class.java]
 
-        buttonOk.setOnClickListener {
-            val name = editTextInput.text.toString().trim()
+        if (savedInstanceState == null) {
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.inputFragmentContainer, InputFragment())
+                .commit()
+        }
 
-            val selectedColorId = radioGroupColor.checkedRadioButtonId
-            val selectedPriceId = radioGroupPrice.checkedRadioButtonId
-
-            if (name.isEmpty() || selectedColorId == -1 || selectedPriceId == -1) {
-                Toast.makeText(this, "Будь ласка, заповніть всі поля та зробіть вибір!", Toast.LENGTH_SHORT).show()
+        viewModel.orderResult.observe(this) { result ->
+            if (result != null) {
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.resultFragmentContainer, ResultFragment())
+                    .commit()
             } else {
-                val colorRadioButton = findViewById<RadioButton>(selectedColorId)
-                val priceRadioButton = findViewById<RadioButton>(selectedPriceId)
-
-                val colorText = colorRadioButton.text.toString()
-                val priceText = priceRadioButton.text.toString()
-
-                val result = "Замовлення оформлено!\nЗамовник: $name\nКолір квітів: $colorText\nКатегорія: $priceText"
-
-                textViewResult.text = result
+                val fragment = supportFragmentManager.findFragmentById(R.id.resultFragmentContainer)
+                if (fragment != null) {
+                    supportFragmentManager.beginTransaction()
+                        .remove(fragment)
+                        .commit()
+                }
             }
         }
     }

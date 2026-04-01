@@ -1,118 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F3F4F6"> <LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:background="#F3F4F6">
 
-    <TextView
+    <FrameLayout
+        android:id="@+id/inputFragmentContainer"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:text="Магазин Квітів"
-        android:textAlignment="center"
-        android:textColor="#6200EE"
-        android:textSize="24sp"
-        android:textStyle="bold" />
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 
-    <androidx.cardview.widget.CardView
+    <FrameLayout
+        android:id="@+id/resultFragmentContainer"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardCornerRadius="16dp"
-        app:cardElevation="4dp"
-        app:cardUseCompatPadding="true">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="20dp">
-
-            <EditText
-                android:id="@+id/editTextInput"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:drawable/editbox_background_normal"
-                android:hint="Введіть ім'я замовника"
-                android:inputType="textPersonName"
-                android:minHeight="48dp"
-                android:padding="12dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="🌸 Оберіть колір квітів:"
-                android:textColor="#333333"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <RadioGroup
-                android:id="@+id/radioGroupColor"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp">
-
-                <RadioButton android:id="@+id/radioRed" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Червоні (Троянди, Тюльпани)" />
-                <RadioButton android:id="@+id/radioWhite" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Білі (Лілії, Хризантеми)" />
-                <RadioButton android:id="@+id/radioYellow" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Жовті (Соняшники, Нарциси)" />
-            </RadioGroup>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="💰 Оберіть діапазон цін:"
-                android:textColor="#333333"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <RadioGroup
-                android:id="@+id/radioGroupPrice"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp">
-
-                <RadioButton android:id="@+id/radioBudget" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Бюджетний (до 500 грн)" />
-                <RadioButton android:id="@+id/radioStandard" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Стандарт (500 - 1500 грн)" />
-                <RadioButton android:id="@+id/radioPremium" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Преміум (від 1500 грн)" />
-            </RadioGroup>
-
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-
-    <Button
-        android:id="@+id/buttonOk"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginTop="16dp"
-        android:text="ОФОРМИТИ ЗАМОВЛЕННЯ"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:cornerRadius="12dp" />
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        app:cardBackgroundColor="#E8F5E9"
-        app:cardCornerRadius="12dp"
-        app:cardElevation="2dp">
-
-        <TextView
-            android:id="@+id/textViewResult"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:text="Тут з'явиться інформація про замовлення"
-            android:textColor="#2E7D32"
-            android:textSize="16sp"
-            android:textStyle="italic" />
-    </androidx.cardview.widget.CardView>
+        android:layout_height="wrap_content" />
 
 </LinearLayout>
-</ScrollView>
